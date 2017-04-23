@@ -1,0 +1,117 @@
+body {
+	text-align: center;
+	background: #FFFBD3;
+  	font-family: 'Josefin Sans', sans-serif;
+  	color: #75FF33;
+  	border: 1px solid #222;
+  	height: 100%;
+}
+h1 {
+	font-size: 70px;
+	font-family: 'Paytone One', sans-serif;
+	width: 30%;
+	margin: 20px auto;
+	margin-bottom: 0;
+}
+h2 {
+	font-size: 30px;
+	color: #ffffff;
+	margin-top: 0;
+}
+img {
+	margin-top: 0;
+	padding-top: 0;
+}
+span {
+	color: green;	
+}
+select {
+	background-color: #ADB0B2;
+	padding: 5px;
+	color: #000;
+	border-radius: 10px;
+	font-size: 20px;
+	margin: 10px 15px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+button {
+	font-size: 20px;
+	background-color: #75FF33;
+	padding: 15px;
+	color: black;
+	border-radius: 10px;
+	margin: 30px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+hr {
+	width: 40%;
+	color: #3F900C;
+	margin: 40px auto;
+}
+tr {
+	margin-right: 20px;
+}
+h3, h4 {
+	text-align: left;
+	width: 50%;
+	margin: 20px auto;
+}
+.question {
+	background-color: #455E77;
+	border-radius: 10px;
+	width: 30%;
+	margin: 40px auto;
+	padding: 10px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 25px;
+}
+#restaurant {
+	color: #970737;
+	border-bottom: 2px solid #970737;
+	width: 50%;
+	margin: 25px auto;
+}
+#hours {
+	color: #970737;
+	width: 20%;
+}
+.table, tr, td {
+	font-size: 20px;
+	text-align: left;
+	color: #222;
+}
+#restaurantSection {
+	width: 50%;
+	margin: 0 auto;
+}
+.title{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+#nutrition {
+	color: green;
+}
+#section1 {
+	background: #464445;
+}
+#section2{
+	background: #A4D0FD;
+}
+#section3{
+	background: #464445;
+	color: #DAF7A6;
+	padding-bottom: 40px;
+}
+#section4 {
+	color: #222;
+	background: #DAF7A6;
+	border: 3px double #222;
+	width: 60%;
+	margin: 20px auto;
+	font-size: 25px;
+}
+#section1, #section2, #section3, #section4 {
+	padding: 30px;
+}
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FEED ME</title>
+	<!-- Latest compiled and minified CSS -->
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script type="text/javascript" src="r.js"></script>
+</head>
+
+
+<body>
+<div id="section1">
+<img src="feedme1.png" alt="logo">
+<h2>Our slogan in one sentence</h2>
+</div>
+
+<div id="section2">
+<h3 class="question">What would you like to eat?</h3>
+
+<select id="cuisineUser">
+	<option>CUISINE</option>
+	<option>MEXICAN</option>
+	<option>CHINESE</option>
+	<option>ITALIAN</option>
+	<option>SPANISH</option>
+	<option>FRENCH</option>
+	<option>JAPANESE</option>
+	<option>INDIAN</option>
+	<option>MIDDLE EASTERN</option>
+	<option>THAI</option>
+	<option>AMERICAN</option>
+	<option>OTHER</option>
+</select>
+
+<select id="distanceUser">
+	<option>DISTANCE</option>
+	<option>Less than 1 mile</option>
+	<option>1-2 miles</option>
+	<option>3-5 miles</option>
+	<option>6-10 miles</option>
+</select>
+
+<select id="priceUser">
+	<option>PRICE</option>
+	<option>$</option>
+	<option>$$</option>
+	<option>$$$</option>
+	<option>$$$$</option>
+</select>
+
+<div>
+<button id="submit">BEST OPTIONS</button>
+</div>
+
+</div>
+
+<div id="restaurantSection">
+<h2 id="restaurant">My Restaurant</h2>
+
+<table>
+	<tr>
+		<td class="title">Rating: </td>
+		<td id="rating"></td>
+	</tr>
+<br>
+	<tr>
+		<td class="title">Address: </td>
+		<td id="address"></td>
+	</tr>
+
+	<tr>
+		<td class="title">Distance: </td>
+		<td id="distance"></td>
+	</tr>
+
+	<tr>
+		<td class="title">Cuisine: </td>
+		<td id="cuisine"></td>
+	</tr>
+
+	<tr>
+		<td class="title">Price: </td>
+		<td id="price"></td>
+	</tr>
+
+
+</table>
+
+
+
+<table>
+<h3 id="hours">Opening Hours:</h3>
+<tr> 
+<td>Monday: </td>
+<td><span id="mondayHours"></span></td> 
+</tr>
+
+<tr>
+<td>Tuesday: </td>
+<td><span id="tuesdayHours"></span></td> 
+</tr>
+
+<tr>
+<td>Wednesday: </td>
+<td><span id="wednesdayHours"></span></td> 
+</tr>
+
+<tr>
+<td>Thursday: </td>
+<td><span id="thursdayHours"></span></td> 
+</tr>
+
+<tr>
+<td>Friday: </td>
+<td><span id="fridayHours"></span></td> 
+</tr>
+
+<tr>
+<td>Saturday: </td>
+<td><span id="saturdayHours"></span></td> 
+</tr>
+
+<tr>
+<td>Sunday: </td>
+<td><span id="sundayHours"></span></td> 
+<tr>
+
+</table>
+</div>
+
+<div id="section4">
+<h2 id="nutrition"> &#127809; Nutrition Fact</h2>
+<h3>The Most Nutritious Meal is this Restaurant is <span id="meal"></span></h3>
+<h3>Calories in Meal: <span id="calories"></span></h3>
+</div>
+
+
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
