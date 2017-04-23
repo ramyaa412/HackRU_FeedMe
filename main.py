@@ -1,5 +1,6 @@
 import apis, nutriapi
 import eatapi
+import bank
 
 
 def main():
@@ -75,7 +76,28 @@ def restaurantMeals():
 	main()
 
 def balance():
-	print("Ideally this would be individual for each customer, but for now, please select whose account do you want to check?")
-	
+	print("Ideally this would be individual for each customer.")
+	print("However, since we received only three customer IDs,")
+	print("please select whose account do you want to check?")
+	print("1. Jerald")
+	print("2. Sabrina")
+	print("3. Elliott")
+	cus = int(input())
+	while (cus != 1 and cus != 2 and cus != 3):
+		print("I didn't get that, please select again!")
+		cus = int(input())
+	if cus == 1: balance = bank.get_balance('58fcb3e9a73e4942cdafd565')
+	elif cus == 2: balance = bank.get_balance('58fcb3e9a73e4942cdafd566')
+	else: balance = bank.get_balance('58fcb3e8a73e4942cdafd564')
+	customers = ["Jerald", "Sabrina", "Elliott"]
+	if balance == 'na': comment = "you do not have an account. It might be better to save some?"
+	elif balance < 10000: comment = "you have less than $10,000. Think twice before splurging!"
+	else: comment = "your account's balance is great. Might it be time to treat yourself and your loved ones?"
+	print()
+	print("Hi " + str(customers[cus-1]) + "! According to our information, " + comment)
+	print()
+	input("Press any key to continue...")
+	print()
+	main()
 
 main()
