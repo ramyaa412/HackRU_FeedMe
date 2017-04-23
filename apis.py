@@ -80,12 +80,12 @@ def get_restaurants(kind, place, dist):
 		found = False
 		for j in zomlist:
 			if (rest.name == j.name): 
-				print("exists: " + j.name)
+				#print("exists: " + j.name)
 				rest.zomUpdate(j)
-				rest.printFormatted()
+				#rest.printFormatted()
 				found = True
 				break
-		if (found == False): print("doesn't exist: " + rest.name)
+		#if (found == False): print("doesn't exist: " + rest.name)
 
 		#print(rest.name)
 

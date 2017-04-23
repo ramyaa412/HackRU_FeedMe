@@ -18,16 +18,22 @@ class Nutrition():
 def return_nutri_complex(itemname):
 	itemname = itemname.split(" ")
 	itemname = "%20".join(itemname)
-	print(itemname)
-	rawNutri = requests.request('GET', url+item+urlnext+urlthird)
+	#print(itemname)
+	rawNutri = requests.request('GET', url+itemname+urlnext+urlthird)
 	response = rawNutri.json()
 
+	print("In decreasing order of relevance to your search, here are some details about your choice:")
+	n = 0
 	for i in response['hits']:
-		print("Item: " + i['fields']['item_name'])
+		print("Item " + str(n + 1) + ": " + i['fields']['item_name'])
 		print("Brand: " + i['fields']['brand_name'])
 		print("Calories: " + str(i['fields']['nf_calories']))
 		print("Fat: " + str(i['fields']['nf_total_fat']))
-		print()
+		input()
+		n += 1
+		if (n > 5): 
+			print("Skipping the remaining results!")
+			break
 
 def return_nutri_simple(itemname):
 	itemname = itemname.split(" ")
