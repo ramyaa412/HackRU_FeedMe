@@ -7,12 +7,14 @@ def main():
 	print("Please select your choice from the following menu:")
 	print("1. Metareviews of restaurants in a location")
 	print("2. Nutrition value of foods and meals")
+	print("3. Figure out how much money do you have in the bank (can you afford to splurge today?!)")
 	inp = input()
-	while (inp != '1' and inp != '2'):
+	while (inp != '1' and inp != '2' and inp != '3'):
 		print("I didn't get that, please select again!")
 		inp = input()
 	if inp == '1': metaReview()
 	if inp == '2': nutritionValue()
+	if inp == '3': balance()
 
 def metaReview():
 	print("Select the type of restaurant you are interestd in:")
@@ -71,5 +73,9 @@ def restaurantMeals():
 	eatapi.menusForInterface(street, city, state)
 	print()
 	main()
-		
+
+def balance():
+	print("Ideally this would be individual for each customer, but for now, please select whose account do you want to check?")
+	
+
 main()
