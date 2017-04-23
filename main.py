@@ -39,6 +39,7 @@ def metaReview():
 		print("Opening hours: ") 
 		for j in range(7):
 			print("  " + restaurants[i].hours[j])
+		print("Number of nearby ATMs: " + str(restaurants[i].atms))
 		print("Not displaying reviews.")
 		print()
 		print("Click any key to continue")

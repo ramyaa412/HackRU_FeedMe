@@ -28,6 +28,13 @@ def get_balance(cust):
 	#print("Your balance is: " + str(balance))
 	return balance
 
+def get_atms(lat, lon):
+	atmurl = 'http://api.reimaginebanking.com/atms?lat=' + lat + '&lng=' + lon + '&rad=1&key=' + nessie
+	rawatms = requests.request('GET', atmurl)
+	response = rawatms.json()
+	return len(response["data"])
+
+#get_atms('38.9283', '-77.1753')
 #print(get_balance('58fcb3e9a73e4942cdafd565'))
 #print(get_balance('58fcb3e9a73e4942cdafd566'))
 #print(get_balance('58fcb3e8a73e4942cdafd564'))

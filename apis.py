@@ -2,6 +2,7 @@ import yelpapi
 import googapi
 import zomatoapi
 import requests
+import bank
 
 class Restaurant():
 
@@ -32,6 +33,9 @@ class Restaurant():
 	def setHours(self, forhours):
 		self.hours = forhours
 
+	def setATMs(self):
+		self.atms = bank.get_atms(str(self.coordinates[0])[:9], str(self.coordinates[1])[:9])
+
 	def zomUpdate(self, zom):
 		self.price = ((self.price * 2) + float(zom.price)) / 3
 		self.rating = ((self.rating * 2) + float(zom.rating)) / 3
@@ -52,7 +56,7 @@ class Restaurant():
 		print("Opening hours:")
 		for i in range(7):
 			print("  " + self.hours[i])
-
+		print("Number of nearby ATMs: " + str(self.atms))
 
 def get_restaurants(kind, place, dist):
 
@@ -76,6 +80,7 @@ def get_restaurants(kind, place, dist):
 		rest.setType(yrest.types)
 		rest.setReviews(i.review, yrest.review, yrest.revcount)
 		rest.setHours(i.hours)
+		rest.setATMs()
 		newadditions.append(rest)
 		found = False
 		for j in zomlist:
