@@ -16,8 +16,8 @@ function getNearByChoices(session)
     
     var result = [
         {"cuisine": "American","restaurant": "Burger king","price": "5","description": "So good. Probably the best food in the world."}
-        ,{"cuisine": "Chinese","restaurant": "China town","price": "10","description": "So good. Probably the best food in the world."}
-        ,{"cuisine": "Indian","restaurant": "Garden","price": "20","description": "So good. Probably the best food in the world."}     
+        ,{"cuisine": "Chinese","restaurant": "The Smith","price": "40","description": "So good. Probably the best food in the world."}
+        ,{"cuisine": "Indian","restaurant": "Indian Garden","price": "20","description": "So good. Probably the best food in the world."}     
         ];
         
         
@@ -87,6 +87,7 @@ function buildResponse(sessionAttributes, speechletResponse)
 
 function getWelcomeResponse(callback) 
 {
+    console.log('here KEVIN NEXMO');
     const sessionAttributes = {};
     const cardTitle = 'Welcome';
     const speechOutput = 'Welcome to Hack R U 2017. This is a demo version of our new app, Feed Me. ' +
@@ -103,7 +104,33 @@ function getWelcomeResponse(callback)
 function handleSessionEndRequest(callback) 
 {
     const cardTitle = 'Session Ended';
+    
     const speechOutput = 'Thank you for trying the demo. ';
+    
+//       var Nexmo = require('nexmo');
+//     console.log('Nexmo started',Nexmo);
+//   var nexmo = new Nexmo({
+//   apiKey: 'b56613e5',
+//   apiSecret: '9aab5bfb448a1364',
+//   applicationId: 'ec344525-4297-431c-a949-8c90a3aa59cf',
+//   privateKey: "./private.key"
+
+// }, {debug: true});
+
+// nexmo.calls.create({
+//   to: [{
+//     type: 'phone',
+//     number: '19808750010'
+//   }],
+//   from: {
+//     type: 'phone',
+//     number: '12028529198'
+//   },
+//   answer_url: ['http://click2calldemo.herokuapp.com/ncco?name=Chinatown&number=19808750010']
+// }, (err, res) => {
+//   if(err) { console.error(err); }
+//   else { console.log(res); }
+// });
     // Setting this to true ends the session and exits the skill.
     const shouldEndSession = true;
 
@@ -113,7 +140,32 @@ function handleSessionEndRequest(callback)
 function confirmOrderResponse(callback) 
 {
     const cardTitle = 'Session Ended';
-    const speechOutput = 'Order confirmed! Thank you for trying the demo. ';
+    
+     const speechOutput = 'Confirmed, I am placing your call to the restaurant! Thank you for trying the demo. ';
+      var Nexmo = require('nexmo');
+    console.log('Nexmo started',Nexmo);
+  var nexmo = new Nexmo({
+  apiKey: 'b56613e5',
+  apiSecret: '9aab5bfb448a1364',
+  applicationId: 'ec344525-4297-431c-a949-8c90a3aa59cf',
+  privateKey: "./private.key"
+
+}, {debug: true});
+
+nexmo.calls.create({
+  to: [{
+    type: 'phone',
+    number: '19808750010'
+  }],
+  from: {
+    type: 'phone',
+    number: '12028529198'
+  },
+  answer_url: ['http://click2calldemo.herokuapp.com/ncco?name=Chinatown&number=19808750010']
+}, (err, res) => {
+  if(err) { console.error(err); }
+  else { console.log(res); }
+});
     // Setting this to true ends the session and exits the skill.
     const shouldEndSession = true;
 
@@ -388,7 +440,33 @@ function onIntent(intentRequest, session, callback)
 
 function onSessionEnded(sessionEndedRequest, session) 
 {
+
     console.log(`onSessionEnded requestId=${sessionEndedRequest.requestId}, sessionId=${session.sessionId}`);
+    
+  var Nexmo = require('nexmo');
+    console.log('Nexmo started',Nexmo);
+  var nexmo = new Nexmo({
+  apiKey: 'b56613e5',
+  apiSecret: '9aab5bfb448a1364',
+  applicationId: 'ec344525-4297-431c-a949-8c90a3aa59cf',
+  privateKey: "./private.key"
+
+}, {debug: true});
+
+nexmo.calls.create({
+  to: [{
+    type: 'phone',
+    number: '19808750010'
+  }],
+  from: {
+    type: 'phone',
+    number: '12028529198'
+  },
+  answer_url: ['http://click2calldemo.herokuapp.com/ncco?name=ChinaTown&number=19808750010']
+}, (err, res) => {
+  if(err) { console.error(err); }
+  else { console.log(res); }
+});
 }
 
 
