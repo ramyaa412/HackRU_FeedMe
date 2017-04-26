@@ -336,6 +336,18 @@ function createChoiceAttributes(choice) {
     };
 }
 
+function createNameAttributes(name) {
+    return {
+        name,
+    };
+}
+
+function createNumberAttributes(number) {
+    return {
+        number,
+    };
+}
+
 function pickCuisine(intent, session, callback)
 {
 
@@ -436,6 +448,15 @@ function onIntent(intentRequest, session, callback)
         throw new Error('Invalid intent');
     }
 }
+
+accounts = {
+
+    "ramyaa": [{"phonenumber": "+9808750010"}],
+    "anthony": [{"phonenumber": "+9551265514"}]
+}
+
+function lookUpRestaurant(name):
+    account{}
 
 
 function onSessionEnded(sessionEndedRequest, session) 
