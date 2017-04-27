@@ -1,7 +1,11 @@
 'use strict';
+//SSML and alexaID required 
+//ssml type- optionsparam.speech
 
 var priceList ={};
 var restaurantList = {};
+//var customername = "cust_name"; Intent or lambda
+//var message = "message";
 
 function getNearByChoices(session)
 {
@@ -9,16 +13,55 @@ function getNearByChoices(session)
     var distance_limit = session.attributes.distance;
     var price_limit = session.attributes.price;
     
-    //there should be a mongodb connection
-    //and use the time&distance&price limit set by the user throughout the session
-    //to filter, and then retrieve data from our database realtime, save it in result.
+    var alexa_mongo = require('feed_me_trial');
+    mongoose = require('mongoose');
+    mongoose.connect('mongodb://localhost:27017/test');
     
+    var db= mongoose.connection,
+        schema = mongoose.Schema({}, {collection: 'AlexaDailyTracks', strict: false, versionKey: false});
     
-    var result = [
-        {"cuisine": "American","restaurant": "Burger king","price": "5","description": "So good. Probably the best food in the world."}
-        ,{"cuisine": "Chinese","restaurant": "The Smith","price": "40","description": "So good. Probably the best food in the world."}
-        ,{"cuisine": "Indian","restaurant": "Indian Garden","price": "20","description": "So good. Probably the best food in the world."}     
-        ];
+    db.on('error', function(error) {
+        console.error('connection error')
+    });
+    // this code runs when successfully connected to your mongodb database
+    db.once('open', function() {
+    console.info('success connection to database');
+    })
+
+
+    function getAndSaveData() 
+    {
+        var url = Name of the web url we are connecting to which is connecting to the mongodb database in backend;
+        alexa.WebData(url,function(error,result)
+        {
+            if(!error)
+            {
+                var data = mongoose.model('FeedMe', schema);
+                data.create(result, function(error,saved)
+                {
+                    if(!error)
+                    {
+                        console.log(' Data Saved');
+                    }
+                    else
+                    {
+                        console.log('data not saved: '+JSON.stringify(error)+' and your data is: '+JSON.stringify(alexaData));
+                    }   
+                });
+            }
+            else
+            {
+                console.error('Data not found : '+ JSON.stringify(error));
+            }
+        });
+    }
+    
+
+    // var result = [
+    //     {"cuisine": "American","restaurant": "Burger king","price": "5","nutrition": "So many calories"}
+    //     ,{"cuisine": "Chinese","restaurant": "The Smith","price": "40","nutrition": "Salad is so healthy"}
+    //     ,{"cuisine": "Indian","restaurant": "Indian Garden","price": "20","nutrition": "They add too much oil"}     
+    //     ];
         
         
     let curCuisine = ''
@@ -53,6 +96,14 @@ function getNearByChoices(session)
     });
 }
 
+function buildResponse(sessionAttributes, speechletResponse) 
+{
+    return {
+        version: '1.0',
+        sessionAttributes,
+        response: speechletResponse,
+    };
+}
 
 function buildSpeechletResponse(title, output, repromptText, shouldEndSession) 
 {
@@ -76,14 +127,7 @@ function buildSpeechletResponse(title, output, repromptText, shouldEndSession)
     };
 }
 
-function buildResponse(sessionAttributes, speechletResponse) 
-{
-    return {
-        version: '1.0',
-        sessionAttributes,
-        response: speechletResponse,
-    };
-}
+
 
 function getWelcomeResponse(callback) 
 {
@@ -142,13 +186,13 @@ function confirmOrderResponse(callback)
     const cardTitle = 'Session Ended';
     
      const speechOutput = 'Confirmed, I am placing your call to the restaurant! Thank you for trying the demo. ';
-      var Nexmo = require('nexmo');
-    console.log('Nexmo started',Nexmo);
-  var nexmo = new Nexmo({
-  apiKey: 'b56613e5',
-  apiSecret: '9aab5bfb448a1364',
-  applicationId: 'ec344525-4297-431c-a949-8c90a3aa59cf',
-  privateKey: "./private.key"
+     var Nexmo = require('nexmo');
+     console.log('Nexmo started',Nexmo);
+     var nexmo = new Nexmo({
+     apiKey: 'b56613e5',
+     apiSecret: '9aab5bfb448a1364',
+     applicationId: 'ec344525-4297-431c-a949-8c90a3aa59cf',
+     privateKey: "./private.key"
 
 }, {debug: true});
 
@@ -166,7 +210,7 @@ nexmo.calls.create({
   if(err) { console.error(err); }
   else { console.log(res); }
 });
-    // Setting this to true ends the session and exits the skill.
+    
     const shouldEndSession = true;
 
     callback({}, buildSpeechletResponse(cardTitle, speechOutput, null, shouldEndSession));
@@ -200,6 +244,7 @@ function getPriceResponse(callback)
         buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
 }
 
+
 function getTimeResponse(callback) 
 {
     const sessionAttributes = {};
@@ -219,6 +264,7 @@ function createDistanceAttributes(distance) {
         distance,
     };
 }
+
 
 function setDistanceTag(intent, session, callback) 
 {
@@ -250,6 +296,7 @@ function createPriceAttributes(price) {
     };
 }
 
+
 function setPriceTag(intent, session, callback) 
 {
     const cardTitle = intent.name;
@@ -273,9 +320,6 @@ function setPriceTag(intent, session, callback)
 }
 
 
-
-
-
 function createTimeAttributes(time) {
     return {
         time,
@@ -296,7 +340,7 @@ function setTimeTag(intent, session, callback)
         sessionAttributes = createTimeAttributes(time);
         var distance = session.attributes.distance;
         var price = session.attributes.price;
-        speechOutput = `Updated to 6 miles, within ${price} dollars and ${time} hours.`;
+        speechOutput = `I'm finding restaurants within 6 miles, ${price} dollars and ${time} hours.`;
     } else {
         speechOutput = "Could you describe your time preference again? ";
         
@@ -346,6 +390,9 @@ function createNumberAttributes(number) {
     return {
         number,
     };
+}
+fuction createCall(intent, session, callback){
+
 }
 
 function pickCuisine(intent, session, callback)
